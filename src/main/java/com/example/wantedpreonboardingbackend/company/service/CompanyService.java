@@ -1,0 +1,24 @@
+package com.example.wantedpreonboardingbackend.company.service;
+
+import com.example.wantedpreonboardingbackend.company.domain.Company;
+import com.example.wantedpreonboardingbackend.company.service.port.CompanyRepository;
+import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
+import com.example.wantedpreonboardingbackend.company.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.service.port.RecruitmentRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class CompanyService {
+
+    private final CompanyRepository companyRepository;
+    private final RecruitmentRepository recruitmentRepository;
+
+    public void registerRecruitment(RegisterRequest request) {
+        Company company = companyRepository.getById(request.getCompanyId());
+
+        Recruitment recruitment = Recruitment.of(company, request);
+        recruitmentRepository.save(recruitment);
+    }
+}

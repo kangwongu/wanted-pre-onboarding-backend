@@ -1,7 +1,7 @@
 package com.example.wantedpreonboardingbackend.recruitment.domain;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.company.dto.RegisterRequest;
 import lombok.Builder;
 import lombok.Getter;
 

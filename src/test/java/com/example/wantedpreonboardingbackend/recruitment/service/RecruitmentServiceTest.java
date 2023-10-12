@@ -1,8 +1,7 @@
-package com.example.wantedpreonboardingbackend.company;
+package com.example.wantedpreonboardingbackend.recruitment.service;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.company.dto.RegisterRequest;
-import com.example.wantedpreonboardingbackend.company.service.CompanyService;
+import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.mock.FakeCompanyRepository;
 import com.example.wantedpreonboardingbackend.mock.FakeRecruitmentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,16 +9,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CompanyServiceTest {
+public class RecruitmentServiceTest {
 
-    private CompanyService companyService;
+    private RecruitmentService recruitmentService;
     private FakeRecruitmentRepository recruitmentRepository;
 
     @BeforeEach
     void init() {
         recruitmentRepository = new FakeRecruitmentRepository();
         FakeCompanyRepository companyRepository = new FakeCompanyRepository();
-        companyService = new CompanyService(companyRepository, recruitmentRepository);
+        recruitmentService = new RecruitmentService(companyRepository, recruitmentRepository);
 
         companyRepository.save(Company.builder()
                 .id(1L)
@@ -41,7 +40,7 @@ public class CompanyServiceTest {
         request.setTech("JAVA/Spring/JPA");
 
         // when
-        companyService.registerRecruitment(request);
+        recruitmentService.registerRecruitment(request);
 
         // then
         assertThat(recruitmentRepository.getById(1L).getCompany().getId()).isEqualTo(1L);
@@ -50,4 +49,5 @@ public class CompanyServiceTest {
         assertThat(recruitmentRepository.getById(1L).getContents()).isEqualTo("백엔드 개발자 채용합니다. 지원어쩌구저쩌구");
         assertThat(recruitmentRepository.getById(1L).getTech()).isEqualTo("JAVA/Spring/JPA");
     }
+
 }

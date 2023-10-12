@@ -1,8 +1,8 @@
-package com.example.wantedpreonboardingbackend.recruitment;
+package com.example.wantedpreonboardingbackend.recruitment.domain;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
-import com.example.wantedpreonboardingbackend.company.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 public class RecruitmentTest {
 
     @Test
-    public void Company와_RegisetRequest로_채용공고를_등록할_수_있다() {
+    public void Company는_RegisetRequest로_채용공고를_생성할_수_있다() {
         // given
         Company company = Company.builder()
                 .id(1L)
@@ -31,7 +31,7 @@ public class RecruitmentTest {
         request.setTech(tech);
 
         // when
-        Recruitment recruitment = Recruitment.of(company, request);
+        Recruitment recruitment = company.createRecruitment(request);
 
         // then
         assertThat(recruitment.getCompany().getName()).isEqualTo("좋은 회사");

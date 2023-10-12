@@ -1,5 +1,7 @@
 package com.example.wantedpreonboardingbackend.company.domain;
 
+import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,4 +19,9 @@ public class Company {
         this.nation = nation;
         this.address = address;
     }
+
+    public Recruitment createRecruitment(RegisterRequest request) {
+        return Recruitment.of(this, request);
+    }
+
 }

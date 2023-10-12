@@ -1,7 +1,6 @@
-package com.example.wantedpreonboardingbackend.company.dto;
+package com.example.wantedpreonboardingbackend.recruitment.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter

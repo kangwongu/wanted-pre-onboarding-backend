@@ -1,7 +1,8 @@
 package com.example.wantedpreonboardingbackend.recruitment.domain;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
-import com.example.wantedpreonboardingbackend.company.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -10,12 +11,12 @@ import java.util.Objects;
 // 채용공고
 @Getter
 public class Recruitment {
-    private Long id;
-    private Company company;
-    private String position;
-    private Integer compensation;
-    private String contents;
-    private String tech;
+    private final Long id;
+    private final Company company;
+    private final String position;
+    private final Integer compensation;
+    private final String contents;
+    private final String tech;
 
     @Builder
     public Recruitment(Long id, Company company, String position, Integer compensation, String contents, String tech) {
@@ -36,4 +37,5 @@ public class Recruitment {
                 .tech(request.getTech())
                 .build();
     }
+
 }

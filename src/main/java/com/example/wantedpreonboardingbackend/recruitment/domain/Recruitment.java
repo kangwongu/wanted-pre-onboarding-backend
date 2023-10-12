@@ -6,6 +6,7 @@ import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.Objects;
 
 // 채용공고
@@ -51,5 +52,14 @@ public class Recruitment {
                 .contents(request.getContents())
                 .tech(request.getTech())
                 .build();
+    }
+
+    public boolean isDuplicateApplication(List<Long> appliedRecruitmentIds) {
+        for (Long appliedRecruitmentId : appliedRecruitmentIds) {
+            if (Objects.equals(id, appliedRecruitmentId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

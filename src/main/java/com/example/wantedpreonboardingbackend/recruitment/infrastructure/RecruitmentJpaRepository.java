@@ -19,4 +19,11 @@ public interface RecruitmentJpaRepository extends JpaRepository<RecruitmentEntit
     Optional<RecruitmentEntity> findById(@Param("recruitmentId") long recruitmentId);
 
     List<RecruitmentEntity> findAllByCompanyId(long companyId);
+
+    @Query("select r from RecruitmentEntity r " +
+            "join fetch r.company c " +
+            "where r.company.name like %:query% " +
+            "or r.position like %:query% " +
+            "or r.tech like %:query%")
+    List<RecruitmentEntity> search(@Param("query") String query);
 }

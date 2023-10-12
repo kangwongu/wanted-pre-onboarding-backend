@@ -45,4 +45,11 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepository {
                 .map(r -> r.toModel())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Recruitment> search(String query) {
+        return recruitmentJpaRepository.search(query).stream()
+                .map(r -> r.toModel())
+                .collect(Collectors.toList());
+    }
 }

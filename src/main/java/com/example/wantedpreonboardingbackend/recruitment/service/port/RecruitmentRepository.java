@@ -14,4 +14,6 @@ public interface RecruitmentRepository {
     List<Recruitment> findAll();
 
     List<Recruitment> findAllByCompanyId(long companyId);
+
+    List<Recruitment> search(String query);
 }

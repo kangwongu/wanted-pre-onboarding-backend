@@ -48,6 +48,13 @@ public class RecruitmentController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping("/recruitment/search")
+    public ResponseEntity<List<ListResponse>> searchRecruitments(@RequestParam String query) {
+        List<ListResponse> response = recruitmentService.searchRecruitments(query);
+
+        return ResponseEntity.ok().body(response);
+    }
+
     @GetMapping("/recruitment/{recruitmentId}")
     public ResponseEntity<DetailResponse> getRecruitment(@PathVariable long recruitmentId) {
         DetailResponse response = recruitmentService.getRecruitment(recruitmentId);

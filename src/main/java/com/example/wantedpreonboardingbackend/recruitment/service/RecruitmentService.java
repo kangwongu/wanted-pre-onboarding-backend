@@ -48,6 +48,12 @@ public class RecruitmentService {
                 .collect(Collectors.toList());
     }
 
+    public List<ListResponse> searchRecruitments(String query) {
+        return recruitmentRepository.search(query)
+                .stream().map(r -> ListResponse.from(r))
+                .collect(Collectors.toList());
+    }
+
     public DetailResponse getRecruitment(long recruitmentId) {
         Recruitment recruitment = recruitmentRepository.getById(recruitmentId);
         List<Long> otherRecruitmentIds = recruitmentRepository.findAllByCompanyId(recruitment.getCompanyId())

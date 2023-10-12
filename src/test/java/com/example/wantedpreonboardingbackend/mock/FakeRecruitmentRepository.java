@@ -64,4 +64,13 @@ public class FakeRecruitmentRepository implements RecruitmentRepository {
                 .filter(d -> Objects.equals(d.getCompanyId(), companyId))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Recruitment> search(String query) {
+        return data.stream()
+                .filter(d -> d.getCompany().getName().contains(query) ||
+                        d.getPosition().contains(query) ||
+                        d.getTech().contains(query))
+                .collect(Collectors.toList());
+    }
 }

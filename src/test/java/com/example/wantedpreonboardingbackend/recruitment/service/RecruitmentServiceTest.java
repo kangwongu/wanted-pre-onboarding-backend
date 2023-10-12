@@ -177,4 +177,22 @@ public class RecruitmentServiceTest {
         assertThat(recruitment.getContents()).isEqualTo("채용합니다");
         assertThat(recruitment.getOtherRecruitment().size()).isEqualTo(1);
     }
+
+    @Test
+    public void 채용공고를_검색할_수_있다() {
+        // given
+        String query = "시니어";
+
+        // when
+        List<ListResponse> response = recruitmentService.searchRecruitments(query);
+
+        // then
+        assertThat(response.size()).isEqualTo(1);
+        assertThat(response.get(0).getCompanyName()).isEqualTo("좋은 회사");
+        assertThat(response.get(0).getNation()).isEqualTo("한국");
+        assertThat(response.get(0).getAddress()).isEqualTo("서울");
+        assertThat(response.get(0).getPosition()).isEqualTo("시니어 백엔드 개발자");
+        assertThat(response.get(0).getCompensation()).isEqualTo(1000000);
+        assertThat(response.get(0).getTech()).isEqualTo("Python/Django");
+    }
 }

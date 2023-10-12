@@ -31,4 +31,9 @@ public class RecruitmentService {
         recruitmentRepository.save(updateRecruitment);
     }
 
+    public void deleteRecruitment(long recruitmentId) {
+        Recruitment recruitment = recruitmentRepository.getById(recruitmentId);
+
+        recruitmentRepository.deleteById(recruitment.getId());
+    }
 }

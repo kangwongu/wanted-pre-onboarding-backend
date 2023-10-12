@@ -29,4 +29,11 @@ public class RecruitmentController {
 
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/recruitment/{recruitmentId}")
+    public ResponseEntity<Void> deleteRecruitment(@PathVariable long recruitmentId) {
+        recruitmentService.deleteRecruitment(recruitmentId);
+
+        return ResponseEntity.ok().build();
+    }
 }

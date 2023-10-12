@@ -22,4 +22,9 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepository {
                 .map(r -> r.toModel())
                 .orElseThrow(()-> new IllegalStateException("Not Exist Recruitment"));
     }
+
+    @Override
+    public void deleteById(long recruitmentId) {
+        recruitmentJpaRepository.deleteById(recruitmentId);
+    }
 }

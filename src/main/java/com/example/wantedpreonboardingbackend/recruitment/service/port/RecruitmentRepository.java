@@ -6,4 +6,6 @@ public interface RecruitmentRepository {
     Recruitment save(Recruitment recruitment);
 
     Recruitment getById(long recruitmentId);
+
+    void deleteById(long recruitmentId);
 }

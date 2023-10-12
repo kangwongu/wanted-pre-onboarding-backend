@@ -1,12 +1,12 @@
 package com.example.wantedpreonboardingbackend.mock;
 
-import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
 import com.example.wantedpreonboardingbackend.recruitment.service.port.RecruitmentRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class FakeRecruitmentRepository implements RecruitmentRepository {
@@ -39,5 +39,16 @@ public class FakeRecruitmentRepository implements RecruitmentRepository {
                 .filter(d -> d.getId().equals(recruitmentId))
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("Not Exist Recruitment"));
+    }
+
+    public Optional<Recruitment> findById(long recruitmentId) {
+        return data.stream()
+                .filter(d -> d.getId().equals(recruitmentId))
+                .findAny();
+    }
+
+    @Override
+    public void deleteById(long recruitmentId) {
+        data.removeIf(d -> d.getId().equals(recruitmentId));
     }
 }

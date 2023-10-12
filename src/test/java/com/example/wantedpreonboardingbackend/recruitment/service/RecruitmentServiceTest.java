@@ -105,4 +105,28 @@ public class RecruitmentServiceTest {
 
     }
 
+    @Test
+    public void 채용공고를_삭제할_수_있다() {
+        // given
+        Recruitment recruitment = Recruitment.builder()
+                .company(Company.builder()
+                        .id(1L)
+                        .name("좋은 회사")
+                        .nation("한국")
+                        .address("서울")
+                        .build())
+                .position("백엔드 개발자")
+                .compensation(500000)
+                .contents("채용합니다")
+                .tech("Python/Django")
+                .build();
+        recruitmentRepository.save(recruitment);
+
+        // when
+        recruitmentService.deleteRecruitment(1L);
+
+        // then
+        assertThat(recruitmentRepository.findById(1L)).isEmpty();
+    }
+
 }

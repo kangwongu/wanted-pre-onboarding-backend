@@ -33,10 +33,11 @@ public class FakeRecruitmentRepository implements RecruitmentRepository {
         return recruitment;
     }
 
+    @Override
     public Recruitment getById(long recruitmentId) {
         return data.stream()
                 .filter(d -> d.getId().equals(recruitmentId))
                 .findAny()
-                .orElseThrow(() -> new IllegalStateException("Not Exist Company"));
+                .orElseThrow(() -> new IllegalStateException("Not Exist Recruitment"));
     }
 }

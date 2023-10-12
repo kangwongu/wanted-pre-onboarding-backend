@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 public class FakeRecruitmentRepository implements RecruitmentRepository {
 
@@ -55,5 +56,12 @@ public class FakeRecruitmentRepository implements RecruitmentRepository {
     @Override
     public List<Recruitment> findAll() {
         return data;
+    }
+
+    @Override
+    public List<Recruitment> findAllByCompanyId(long companyId) {
+        return data.stream()
+                .filter(d -> Objects.equals(d.getCompanyId(), companyId))
+                .collect(Collectors.toList());
     }
 }

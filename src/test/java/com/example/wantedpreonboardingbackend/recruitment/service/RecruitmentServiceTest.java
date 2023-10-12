@@ -2,6 +2,7 @@ package com.example.wantedpreonboardingbackend.recruitment.service;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
+import com.example.wantedpreonboardingbackend.recruitment.dto.DetailResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.ListResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.mock.FakeCompanyRepository;
@@ -46,6 +47,15 @@ public class RecruitmentServiceTest {
                 .position("백엔드 개발자")
                 .compensation(500000)
                 .contents("채용합니다")
+                .tech("Python/Django")
+                .build()
+        );
+        recruitmentRepository.save(Recruitment.builder()
+                .id(3L)
+                .company(company)
+                .position("시니어 백엔드 개발자")
+                .compensation(1000000)
+                .contents("채용가자")
                 .tech("Python/Django")
                 .build()
         );
@@ -139,7 +149,7 @@ public class RecruitmentServiceTest {
         List<ListResponse> recruitments = recruitmentService.getRecruitments();
 
         // then
-        assertThat(recruitments.size()).isEqualTo(1);
+        assertThat(recruitments.size()).isEqualTo(2);
         assertThat(recruitments.get(0).getId()).isEqualTo(2L);
         assertThat(recruitments.get(0).getCompanyName()).isEqualTo("좋은 회사");
         assertThat(recruitments.get(0).getNation()).isEqualTo("한국");
@@ -147,5 +157,24 @@ public class RecruitmentServiceTest {
         assertThat(recruitments.get(0).getPosition()).isEqualTo("백엔드 개발자");
         assertThat(recruitments.get(0).getCompensation()).isEqualTo(500000);
         assertThat(recruitments.get(0).getTech()).isEqualTo("Python/Django");
+    }
+
+    @Test
+    public void 채용공고_상세를_조회할_수_있다() {
+        // given
+
+        // when
+        DetailResponse recruitment = recruitmentService.getRecruitment(2L);
+
+        // then
+        assertThat(recruitment.getId()).isEqualTo(2L);
+        assertThat(recruitment.getCompanyName()).isEqualTo("좋은 회사");
+        assertThat(recruitment.getNation()).isEqualTo("한국");
+        assertThat(recruitment.getAddress()).isEqualTo("서울");
+        assertThat(recruitment.getPosition()).isEqualTo("백엔드 개발자");
+        assertThat(recruitment.getCompensation()).isEqualTo(500000);
+        assertThat(recruitment.getTech()).isEqualTo("Python/Django");
+        assertThat(recruitment.getContents()).isEqualTo("채용합니다");
+        assertThat(recruitment.getOtherRecruitment().size()).isEqualTo(1);
     }
 }

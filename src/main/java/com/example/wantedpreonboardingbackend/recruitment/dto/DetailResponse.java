@@ -18,7 +18,7 @@ public class DetailResponse {
     private String contents;
     private List<Long> otherRecruitment;
 
-    public static DetailResponse from(Recruitment r, List<Long> otherRecruitment) {
+    public static DetailResponse of(Recruitment r, List<Long> otherRecruitment) {
         DetailResponse response = new DetailResponse();
         response.setId(r.getId());
         response.setCompanyName(r.getCompany().getName());

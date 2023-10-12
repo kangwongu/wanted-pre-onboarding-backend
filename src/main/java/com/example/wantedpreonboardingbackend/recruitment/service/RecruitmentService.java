@@ -62,6 +62,6 @@ public class RecruitmentService {
                 .collect(Collectors.toList());
         otherRecruitmentIds.remove(recruitmentId);
 
-        return DetailResponse.from(recruitment, otherRecruitmentIds);
+        return DetailResponse.of(recruitment, otherRecruitmentIds);
     }
 }

@@ -1,13 +1,13 @@
-package com.example.wantedpreonboardingbackend.recruitment.domain;
+package com.example.wantedpreonboardingbackend.company.domain;
 
-import com.example.wantedpreonboardingbackend.company.domain.Company;
+import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RecruitmentTest {
+public class CompanyTest {
 
     @Test
     public void Company는_RegisetRequest로_채용공고를_생성할_수_있다() {

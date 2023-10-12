@@ -15,4 +15,11 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepository {
     public Recruitment save(Recruitment recruitment) {
         return recruitmentJpaRepository.save(RecruitmentEntity.from(recruitment)).toModel();
     }
+
+    @Override
+    public Recruitment getById(long recruitmentId) {
+        return recruitmentJpaRepository.findById(recruitmentId)
+                .map(r -> r.toModel())
+                .orElseThrow(()-> new IllegalStateException("Not Exist Recruitment"));
+    }
 }

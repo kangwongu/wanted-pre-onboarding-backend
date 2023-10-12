@@ -38,4 +38,18 @@ public class Recruitment {
                 .build();
     }
 
+    public long getCompanyId() {
+        return company.getId();
+    }
+
+    public Recruitment update(UpdateRequest request) {
+        return Recruitment.builder()
+                .id(id)
+                .company(company)
+                .position(request.getPosition())
+                .compensation(request.getCompensation())
+                .contents(request.getContents())
+                .tech(request.getTech())
+                .build();
+    }
 }

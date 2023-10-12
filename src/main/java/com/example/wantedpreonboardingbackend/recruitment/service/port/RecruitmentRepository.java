@@ -4,4 +4,6 @@ import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
 
 public interface RecruitmentRepository {
     Recruitment save(Recruitment recruitment);
+
+    Recruitment getById(long recruitmentId);
 }

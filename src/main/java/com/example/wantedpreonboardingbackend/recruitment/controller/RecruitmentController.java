@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.recruitment.controller;
 
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
+import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import com.example.wantedpreonboardingbackend.recruitment.service.RecruitmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,4 +21,12 @@ public class RecruitmentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PutMapping("/company/{companyId}/recruitment/{recruitmentId}")
+    public ResponseEntity<Void> updateRecruitment(@PathVariable long companyId,
+                                                  @PathVariable long recruitmentId,
+                                                  @RequestBody UpdateRequest request) {
+        recruitmentService.updateRecruitment(companyId, recruitmentId, request);
+
+        return ResponseEntity.ok().build();
+    }
 }

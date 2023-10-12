@@ -2,6 +2,7 @@ package com.example.wantedpreonboardingbackend.company.domain;
 
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
+import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -24,4 +25,14 @@ public class Company {
         return Recruitment.of(this, request);
     }
 
+    public Recruitment updateRecruitment(Recruitment recruitment, UpdateRequest request) {
+        if (validUpdate(recruitment)) {
+            throw new IllegalStateException("Invalid Update");
+        }
+        return recruitment.update(request);
+    }
+
+    private boolean validUpdate(Recruitment recruitment) {
+        return !id.equals(recruitment.getCompanyId());
+    }
 }

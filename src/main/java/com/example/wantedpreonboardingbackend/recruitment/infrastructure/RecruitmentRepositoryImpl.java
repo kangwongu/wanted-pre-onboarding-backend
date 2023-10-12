@@ -5,6 +5,9 @@ import com.example.wantedpreonboardingbackend.recruitment.service.port.Recruitme
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 @RequiredArgsConstructor
 public class RecruitmentRepositoryImpl implements RecruitmentRepository {
@@ -26,5 +29,12 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepository {
     @Override
     public void deleteById(long recruitmentId) {
         recruitmentJpaRepository.deleteById(recruitmentId);
+    }
+
+    @Override
+    public List<Recruitment> findAll() {
+        return recruitmentJpaRepository.findAll().stream()
+                .map(r -> r.toModel())
+                .collect(Collectors.toList());
     }
 }

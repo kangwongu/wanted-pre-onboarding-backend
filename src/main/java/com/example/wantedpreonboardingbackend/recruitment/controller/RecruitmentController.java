@@ -1,5 +1,6 @@
 package com.example.wantedpreonboardingbackend.recruitment.controller;
 
+import com.example.wantedpreonboardingbackend.recruitment.dto.DetailResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.ListResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
@@ -43,6 +44,13 @@ public class RecruitmentController {
     @GetMapping("/recruitment")
     public ResponseEntity<List<ListResponse>> getRecruitments() {
         List<ListResponse> response = recruitmentService.getRecruitments();
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/recruitment/{recruitmentId}")
+    public ResponseEntity<DetailResponse> getRecruitment(@PathVariable long recruitmentId) {
+        DetailResponse response = recruitmentService.getRecruitment(recruitmentId);
 
         return ResponseEntity.ok().body(response);
     }

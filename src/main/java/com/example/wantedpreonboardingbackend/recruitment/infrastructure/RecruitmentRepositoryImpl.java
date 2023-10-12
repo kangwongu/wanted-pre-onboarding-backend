@@ -37,4 +37,12 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepository {
                 .map(r -> r.toModel())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Recruitment> findAllByCompanyId(long companyId) {
+        return recruitmentJpaRepository.findAllByCompanyId(companyId)
+                .stream()
+                .map(r -> r.toModel())
+                .collect(Collectors.toList());
+    }
 }

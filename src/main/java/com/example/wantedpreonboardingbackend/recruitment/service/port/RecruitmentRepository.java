@@ -12,4 +12,6 @@ public interface RecruitmentRepository {
     void deleteById(long recruitmentId);
 
     List<Recruitment> findAll();
+
+    List<Recruitment> findAllByCompanyId(long companyId);
 }

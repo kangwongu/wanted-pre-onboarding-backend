@@ -10,4 +10,6 @@ public interface RecruitmentJpaRepository extends JpaRepository<RecruitmentEntit
     @Query("select r from RecruitmentEntity r " +
             "join fetch r.company")
     List<RecruitmentEntity> findAll();
+
+    List<RecruitmentEntity> findAllByCompanyId(long companyId);
 }

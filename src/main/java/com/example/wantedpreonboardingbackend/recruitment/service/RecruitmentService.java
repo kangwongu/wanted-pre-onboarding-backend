@@ -1,6 +1,7 @@
 package com.example.wantedpreonboardingbackend.recruitment.service;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
+import com.example.wantedpreonboardingbackend.recruitment.dto.DetailResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.ListResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.company.service.port.CompanyRepository;
@@ -45,5 +46,16 @@ public class RecruitmentService {
         return recruitmentRepository.findAll()
                 .stream().map(r -> ListResponse.from(r))
                 .collect(Collectors.toList());
+    }
+
+    public DetailResponse getRecruitment(long recruitmentId) {
+        Recruitment recruitment = recruitmentRepository.getById(recruitmentId);
+        List<Long> otherRecruitmentIds = recruitmentRepository.findAllByCompanyId(recruitment.getCompanyId())
+                .stream()
+                .map(r -> r.getId())
+                .collect(Collectors.toList());
+        otherRecruitmentIds.remove(recruitmentId);
+
+        return DetailResponse.from(recruitment, otherRecruitmentIds);
     }
 }

@@ -51,4 +51,9 @@ public class FakeRecruitmentRepository implements RecruitmentRepository {
     public void deleteById(long recruitmentId) {
         data.removeIf(d -> d.getId().equals(recruitmentId));
     }
+
+    @Override
+    public List<Recruitment> findAll() {
+        return data;
+    }
 }

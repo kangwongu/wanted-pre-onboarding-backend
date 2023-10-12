@@ -2,12 +2,15 @@ package com.example.wantedpreonboardingbackend.recruitment.service;
 
 import com.example.wantedpreonboardingbackend.company.domain.Company;
 import com.example.wantedpreonboardingbackend.recruitment.domain.Recruitment;
+import com.example.wantedpreonboardingbackend.recruitment.dto.ListResponse;
 import com.example.wantedpreonboardingbackend.recruitment.dto.RegisterRequest;
 import com.example.wantedpreonboardingbackend.mock.FakeCompanyRepository;
 import com.example.wantedpreonboardingbackend.mock.FakeRecruitmentRepository;
 import com.example.wantedpreonboardingbackend.recruitment.dto.UpdateRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -129,4 +132,20 @@ public class RecruitmentServiceTest {
         assertThat(recruitmentRepository.findById(1L)).isEmpty();
     }
 
+    @Test
+    public void 채용공고_목록을_조회할_수_있다() {
+        // given
+        // when
+        List<ListResponse> recruitments = recruitmentService.getRecruitments();
+
+        // then
+        assertThat(recruitments.size()).isEqualTo(1);
+        assertThat(recruitments.get(0).getId()).isEqualTo(2L);
+        assertThat(recruitments.get(0).getCompanyName()).isEqualTo("좋은 회사");
+        assertThat(recruitments.get(0).getNation()).isEqualTo("한국");
+        assertThat(recruitments.get(0).getAddress()).isEqualTo("서울");
+        assertThat(recruitments.get(0).getPosition()).isEqualTo("백엔드 개발자");
+        assertThat(recruitments.get(0).getCompensation()).isEqualTo(500000);
+        assertThat(recruitments.get(0).getTech()).isEqualTo("Python/Django");
+    }
 }
